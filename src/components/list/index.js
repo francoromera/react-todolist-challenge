@@ -6,6 +6,7 @@ import Button from '../button';
 class List extends Component {
 
     render() {
+        const { items, onEdit, onRemove } = this.props;
         return (
             <table>
                 <thead>
@@ -15,18 +16,19 @@ class List extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Item</td>
-                        <td>
-                            <Button type='edit' onClick={''}>
-                                Edit
-                            </Button>
-                            <Button type='delete' onClick={''}>
-                                Delete
-                            </Button> 
-                        </td>
-                    </tr>
-                    
+                    {items.map(item => (
+                        <tr key={item.id}>
+                            <td>{item.name}</td>
+                            <td>
+                                <Button type='edit' onClick={() => onEdit(item)}>
+                                    Edit
+                                </Button>
+                                <Button type='delete' onClick={() => onRemove(item)}>
+                                    Delete
+                                </Button> 
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         );
